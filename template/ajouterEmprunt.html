@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Nouvel emprunt</title></head>
+<body>
+    <h1>Ajouter un emprunt</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Valider l'emprunt</button>
+    </form>
+    <a href="{% url 'home' %}">Retour accueil</a>
+</body>
+</html>

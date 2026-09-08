@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Livres</title>
+</head>
+<body>
+    <h1>Liste des Livres</h1>
+    <a href="{% url 'home' %}">Retour à l'accueil</a>
+    <ul>
+        {% if user.is_authenticated and user.is_admin %}
+            {% for livre in livres %}
+                <li>
+                    {{ livre.titre }} par {{ livre.auteur }} ({{ livre.datePublication|date:"d/m/Y" }}), nbr d'exemplaire : {{livre.nb_exemplaires}}
+                    - <a href="{% url 'modifierLivre' livre.id %}">Modifier</a>
+                    - <a href="{% url 'supprimerLivre' livre.id %}">Supprimer</a>
+                </li>
+            {% endfor %}
+        {% else %}
+            {% for livre in livres %}
+                <li>
+                    {{ livre.titre }} par {{ livre.auteur }} ({{ livre.datePublication|date:"d/m/Y" }}) nombre d'exemplaire : {{livre.nb_exemplaires}}
+                </li>
+            {% endfor %}
+        {% endif %}
+    {% if livres|length == 0 %}
+        <li>Aucun livre trouvé.</li>
+    {% endif %} 
+
+    </ul>
+</body>
+</html>

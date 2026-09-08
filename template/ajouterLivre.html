@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un Livre</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Ajouter un Livre</h1>
+        <a href="{% url 'home' %}">← Retour</a>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Ajouter</button>
+            </form>
+    </div>
+</body>
+</html>

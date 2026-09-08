@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mes Emprunts</title>
+    <style>
+        .en-retard {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emprunts en cours</h1>
+    
+    {% if emprunts_actifs %}
+    <ul>
+        {% for emprunt in emprunts_actifs %}
+        <li class="{% if emprunt.id in emprunts_en_retard_ids %}en-retard{% endif %}">
+            {{ emprunt.utilisateur.email }} a emprunté <strong>{{ emprunt.livre.titre }}</strong> — 
+            le {{ emprunt.date_emprunt|date:"d/m/Y" }} — 
+            à rendre avant le {{ emprunt.date_retour|date:"d/m/Y" }}
+            {% if emprunt.id in emprunts_en_retard_ids %}
+                ⚠️ (En retard)
+            {% endif %}
+            — <a href="{% url 'rendreEmprunt' emprunt.id %}">Rendre</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>IL n'y a pas d'emprunt en cours.</p>
+    {% endif %}
+
+    <h1>Historique de mes emprunts</h1>
+    {% if historique %}
+    <ul>
+        {% for emprunt in historique %}
+        <li>
+            <strong>{{ emprunt.livre.titre }}</strong> —
+            emprunté le {{ emprunt.date_emprunt|date:"d/m/Y" }} —
+            rendu le {{ emprunt.date_retour|date:"d/m/Y" }} par {{ emprunt.utilisateur.email }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Vous n'avez pas encore rendu de livre.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Retour à l'accueil</a>
+</body>
+</html>

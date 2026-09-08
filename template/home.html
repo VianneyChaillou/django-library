@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accueil</title>
+    </head>
+    <body>
+        <h1>Bienvenue {{ user.email }} !</h1>
+        <p>Tu es connecté.</p>
+        <div class="menu-principal">
+            <ul>
+                <li><a href="{% url 'listeLivres' %}">Voir tous les livres</a></li>
+                <li><a href="{% url 'mesEmprunts' %}">Voir emprunts personnel</a></li>
+                {% if user.is_authenticated and user.is_admin %}
+                    <li><a href="{% url 'ajouterLivre' %}">Ajouter un nouveau livre</a></li>
+                    <li><a href="{% url 'listeEmprunts' %}">Liste de tout les emprunts</a></li>
+                    <li><a href="{% url 'ajouterEmprunt' %}">Ajotuer un emprunt</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+        {% if user.is_authenticated and user.is_admin %}
+            <p>Vous êtes un administrateur. </p>
+        {% elif user.is_authenticated %}
+            <p>Vous êtes un utilisateur standard.</p>
+        {% endif %}
+    </body>
+</html>

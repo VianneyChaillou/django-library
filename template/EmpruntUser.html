@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mes Emprunts</title>
+    <style>
+        .en-retard {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Mes emprunts en cours</h1>
+<ul>
+{% for emprunt in emprunts_actifs %}
+    <li class="{% if emprunt.id in emprunts_en_retard_ids %}en-retard{% endif %}">
+        {{ emprunt.livre.titre }}
+        (à rendre avant {{ emprunt.date_retour|date:"d/m/Y" }})
+        {% if emprunt.id in emprunts_en_retard_ids %}
+            ⚠️ En retard !
+        {% endif %}
+    </li>
+{% empty %}
+    <li>Aucun emprunt actif.</li>
+{% endfor %}
+</ul>
+
+<h1>Historique de mes retours</h1>
+<ul>
+{% for emprunt in historique %}
+    <li>
+        {{ emprunt.livre.titre }} — rendu le {{ emprunt.date_retour|date:"d/m/Y" }}
+    </li>
+{% empty %}
+    <li>Aucun retour enregistré.</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'home' %}">Retour à l'accueil</a>
+</body>
+</html>

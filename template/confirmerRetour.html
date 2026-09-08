@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Confirmer le retour</title></head>
+<body>
+
+<h1>Retour du livre</h1>
+<p>{{ emprunt.utilisateur.email }} va rendre <strong>{{ emprunt.livre.titre }}</strong></p>
+<p>Emprunté le {{ emprunt.date_emprunt|date:"d/m/Y" }} — à rendre avant {{ emprunt.date_retour|date:"d/m/Y" }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmer le retour</button>
+    <a href="{% url 'listeEmprunts' %}">Annuler</a>
+</form>
+
+</body>
+</html>
