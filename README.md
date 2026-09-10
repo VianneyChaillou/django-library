@@ -6,27 +6,6 @@
 
 A full-stack, modular library management system built with Python, Django, and PostgreSQL. This project focuses on clean backend architecture, relational database modeling, and strict Role-Based Access Control (RBAC).
 
-## 📊 System Modeling (UML)
-
-The system was fully modeled prior to development to ensure structural integrity and clear separation of concerns between our two main actors: the Member (Adhérent) and the Employee (Employé).
-
-### Use Case Diagrams
-The application distinguishes basic authentication from strict loan management, where only an employee can register a loan.
-
-**User Connection:**
-![Diagramme de cas d'utilisation - Connexion](docs/use_case_connexion.png)
-
-**Loan Management:**
-![Diagramme de cas d'utilisation - Prêt](docs/use_case_pret.png)
-
-### Database Modeling
-The database architecture links Members, Employees, and Documents through a Loan (Prêt) entity.
-
-**Conceptual Data Model (MCD):**
-![Modèle Conceptuel de Données](docs/mcd.png)
-
-**Relational Model:**
-![Modèle Relationnel](docs/modele_relationnel.png)
 
 ## 🏗️ Project Architecture
 
