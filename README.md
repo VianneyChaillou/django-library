@@ -1,4 +1,4 @@
-# 📚 Django Library Management System
+# Django Library Management System
 
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -7,7 +7,7 @@
 A full-stack, modular library management system built with Python, Django, and PostgreSQL. This project focuses on clean backend architecture, relational database modeling, and strict Role-Based Access Control (RBAC).
 
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 The system is designed with a strict modular architecture where each Django application has a single, well-defined responsibility:
 *   **`bd` (Database Core):** The foundation of the project containing the structural data models (`models.py`). 
@@ -15,7 +15,7 @@ The system is designed with a strict modular architecture where each Django appl
 *   **`gestionLivres` (Business Logic):** The operational brain handling CRUD operations for books and enforcing business rules.
 *   **`accueil`:** A lightweight entry-point application serving the main dashboard.
 
-## 🔐 Security & Business Logic
+## Security & Business Logic
 
 Access to sensitive endpoints is protected by custom decorators and business rules derived from our initial specifications:
 *   **Role Management:** An `is_admin` boolean separates Members (who can only borrow, return, and login) from Employees (who manage accounts, documents, and validate loans/returns).
@@ -23,7 +23,7 @@ Access to sensitive endpoints is protected by custom decorators and business rul
 *   **Stock Verification:** A document can only be borrowed if at least one copy is available. The system automatically updates the inventory when a loan or return is processed.
 *   **Privilege Restriction:** Only authorized employees can register a loan. Standard members are restricted by `@login_required` decorators.
 
-## 🚀 Local Installation Guide
+## Local Installation Guide
 
 ### 1. Database Prerequisites
 1. Ensure **PostgreSQL** is installed.
